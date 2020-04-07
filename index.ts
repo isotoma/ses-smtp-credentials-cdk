@@ -5,7 +5,7 @@ import * as cdk from '@aws-cdk/core';
 import * as customResource from '@aws-cdk/custom-resources';
 import * as path from 'path';
 
-class SesSmtpCredentialsProvider extends cdk.Construct {
+export class SesSmtpCredentialsProvider extends cdk.Construct {
     public readonly provider: customResource.Provider;
 
     public static getOrCreate(scope: cdk.Construct): customResource.Provider {
@@ -34,19 +34,34 @@ class SesSmtpCredentialsProvider extends cdk.Construct {
     }
 }
 
-class SesSmtpCredentialsProps {
+export class SesSmtpCredentialsProps {
     readonly region: string;
 }
 
-class SesSmtpCredentials extends cdk.Construct {
+export class SesSmtpCredentials extends cdk.Construct {
     public readonly region: string;
+    private resource: cfn.CustomResource;
+
     constructor(scope: cdk.Construct, id: string, props: SesSmtpCredentialsProps) {
         super(scope, id);
         if (!props.region) {
             throw new Error('No region specified');
         }
-        new cfn.CustomResource(this, 'Resource', {
+        this.region = props.region;
+        this.resource = new cfn.CustomResource(this, 'Resource', {
             provider: SesSmtpCredentialsProvider.getOrCreate(this),
+            resourceType: 'Custom::SesSmtpCredentials',
+            properties: {
+                region: this.region
+            }
         });
+    }
+
+    public username(): cdk.Reference {
+        return this.resource.getAtt('Username')
+    }
+
+    public password(): cdk.Reference {
+        return this.resource.getAtt('password')
     }
 }

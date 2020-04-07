@@ -23,6 +23,5 @@
     "@types/aws-lambda": "^8.10.47",
     "@types/node": "^13.11.0"
   },
-  "dependencies": {
-  }
+  "dependencies": {}
 }
