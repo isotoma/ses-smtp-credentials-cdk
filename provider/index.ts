@@ -7,13 +7,20 @@ import {
 } from 'aws-lambda';
 import * as AWS from 'aws-sdk';
 import * as crypto from 'crypto';
+import strftime from 'strftime';
 import * as utf8 from 'utf8';
 
+const policyName = 'ses-smtp-credentials-policy';
+
 export const sign = (key: string[], msg: string) => {
-    return crypto
+
+    // Typescript refuses to allow digest('binary') on this without the type
+    // hacking. a bug somewhere.
+    const hmac = crypto
         .createHmac('sha256', Buffer.from(key.map((a) => a.charCodeAt(0))))
-        .update(utf8.encode(msg))
-        .digest()
+        .update(utf8.encode(msg)) as any;
+
+    return hmac.digest('binary')
         .toString()
         .split('');
 }
@@ -41,13 +48,15 @@ export const getSmtpPassword = (key: string, region: string) => {
 export const onCreate = async (event: CloudFormationCustomResourceCreateEvent): Promise<CloudFormationCustomResourceResponse> => {
     const region = event.ResourceProperties.Region;
     const iam = new AWS.IAM();
-    const user = await iam.createUser().promise();
+    const user = await iam.createUser({
+        UserName: `ses-user-${strftime('%Y-%b-%d.%H-%M-%S.%s')}`
+    }).promise();
     if(!user.User) {
         throw new Error("No user created");
     }
     const policy = await iam.putUserPolicy({
         UserName: user.User.UserName,
-        PolicyName: 'SendRawEmail',
+        PolicyName: policyName,
         PolicyDocument: JSON.stringify({
             Version: '2012-10-17',
             Statement: {
@@ -65,10 +74,10 @@ export const onCreate = async (event: CloudFormationCustomResourceCreateEvent): 
     const password = getSmtpPassword(secretKey, region);
     return {
         Status: 'SUCCESS',
-        PhysicalResourceId: user.User.UserName,
+        PhysicalResourceId: `${user.User.UserName}/${accessKey.AccessKey.AccessKeyId}`,
         StackId: event.StackId,
         RequestId: event.RequestId,
-        LogicalResourceId: user.User.UserName,
+        LogicalResourceId: event.LogicalResourceId,
         Data: {
             Username: username,
             Password: password,
@@ -88,8 +97,17 @@ export const onUpdate = async (event: CloudFormationCustomResourceUpdateEvent): 
 
 export const onDelete = async (event: CloudFormationCustomResourceDeleteEvent): Promise<CloudFormationCustomResourceResponse> => {
     const iam = new AWS.IAM();
+    const [username, accessKeyId] = event.PhysicalResourceId.split(/\//);
+    await iam.deleteAccessKey({
+        UserName: username,
+        AccessKeyId: accessKeyId,
+    }).promise();
+    await iam.deleteUserPolicy({
+        UserName: username,
+        PolicyName: policyName,
+    }).promise();
     await iam.deleteUser({
-        UserName: event.PhysicalResourceId
+        UserName: username
     }).promise();
     return {
         Status: 'SUCCESS',
@@ -98,9 +116,7 @@ export const onDelete = async (event: CloudFormationCustomResourceDeleteEvent): 
         LogicalResourceId: event.LogicalResourceId,
         PhysicalResourceId: event.PhysicalResourceId,
     }
-    
 }
-
 
 export const onEvent = (event: CloudFormationCustomResourceEvent): Promise<CloudFormationCustomResourceResponse> => {
     console.log(JSON.stringify(event));

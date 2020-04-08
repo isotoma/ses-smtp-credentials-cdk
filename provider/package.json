@@ -16,7 +16,9 @@
     "@types/utf8": "^2.1.6"
   },
   "dependencies": {
+    "@types/strftime": "^0.9.2",
     "aws-sdk": "^2.654.0",
+    "strftime": "^0.10.0",
     "utf8": "^3.0.0"
   }
 }

@@ -26,7 +26,14 @@ export class SesSmtpCredentialsProvider extends cdk.Construct {
                 initialPolicy: [
                     new iam.PolicyStatement({
                         resources: ['*'],
-                        actions: ['iam:CreateUser'],
+                        actions: [
+                            'iam:CreateUser',
+                            'iam:PutUserPolicy',
+                            'iam:CreateAccessKey',
+                            'iam:DeleteUser',
+                            'iam:DeleteUserPolicy',
+                            'iam:DeleteAccessKey'
+                        ],
                     }),
                 ],
             }),
@@ -52,16 +59,16 @@ export class SesSmtpCredentials extends cdk.Construct {
             provider: SesSmtpCredentialsProvider.getOrCreate(this),
             resourceType: 'Custom::SesSmtpCredentials',
             properties: {
-                region: this.region
+                Region: this.region
             }
         });
     }
 
-    public username(): cdk.Reference {
-        return this.resource.getAtt('Username')
+    public username(): string {
+        return this.resource.getAttString('Username')
     }
-
-    public password(): cdk.Reference {
-        return this.resource.getAtt('password')
+    
+    public password(): string {
+        return this.resource.getAttString('Password')
     }
 }
