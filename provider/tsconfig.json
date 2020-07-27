@@ -2,13 +2,12 @@
   "compilerOptions": {
     "target":"ES2018",
     "module": "commonjs",
-    "lib": ["es2016", "es2017.object", "es2017.string"],
-    "outDir": "../lib/provider",
-    "declaration": false,
+    "lib": ["es2018"],
+    "outDir": "lib",
+    "declaration": true,
     "strict": true,
     "noImplicitAny": true,
     "strictNullChecks": true,
-    "esModuleInterop": true,
     "noImplicitThis": true,
     "alwaysStrict": true,
     "noUnusedLocals": false,
@@ -19,12 +18,10 @@
     "inlineSources": true,
     "experimentalDecorators": true,
     "strictPropertyInitialization":false,
-    "typeRoots": ["./node_modules/@types"]
+    "typeRoots": ["./node_modules/@types"],
+    "types": ["node", "jest"]
   },
   "include": [
     "index.ts"
-  ],
-  "exclude": [
-    "cdk.out"
   ]
 }
