@@ -7,7 +7,6 @@ import {
 } from 'aws-lambda';
 import * as AWS from 'aws-sdk';
 import * as crypto from 'crypto';
-import * as strftime from 'strftime';
 import * as utf8 from 'utf8';
 
 const policyName = 'ses-smtp-credentials-policy';
@@ -43,9 +42,13 @@ export const getSmtpPassword = (key: string, region: string) => {
 export const onCreate = async (event: CloudFormationCustomResourceCreateEvent): Promise<CloudFormationCustomResourceResponse> => {
     const region = event.ResourceProperties.Region;
     const iam = new AWS.IAM();
+
+    const now = new Date();
+    const userName = `ses-user-${now.toISOString().replace('T', '.').replace('Z', '').replace(/:/g, '-')}`;
+
     const user = await iam
         .createUser({
-            UserName: `ses-user-${strftime('%Y-%b-%d.%H-%M-%S.%s')}`,
+            UserName: userName,
         })
         .promise();
     if (!user.User) {

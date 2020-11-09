@@ -4,7 +4,9 @@
   "description": "Create SMTP Credentials for use with SES",
   "main": "lib/index.js",
   "scripts": {
-    "build": "tsc && cd provider && npm install && tsc && cp -r node_modules ../lib/provider && rm -rf ../lib/provider/node_modules/aws-sdk",
+    "compile": "tsc",
+    "clean": "rm -rf ./lib",
+    "build": "npm run clean && npm run compile && cp -r provider ./lib/provider && rm -rf ./lib/provider/lib ./lib/provider/node_modules && cp package.json ./lib",
     "test": "jest"
   },
   "repository": {
@@ -19,14 +21,11 @@
   "homepage": "https://github.com/isotoma/ses-smtp-credentials-cdk#readme",
   "devDependencies": {
     "@aws-cdk/aws-lambda": "^1.31.0",
+    "@aws-cdk/aws-lambda-nodejs": "^1.31.0",
     "@aws-cdk/core": "^1.31.0",
     "@aws-cdk/custom-resources": "^1.31.0",
-    "@types/aws-lambda": "^8.10.47",
     "@types/node": "^13.11.0",
     "jest": "^25.2.7",
     "typescript": "^3.8.3"
-  },
-  "dependencies": {
-    "strftime": "^0.10.0"
   }
 }

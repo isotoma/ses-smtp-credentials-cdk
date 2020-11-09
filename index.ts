@@ -1,5 +1,6 @@
 import * as cfn from '@aws-cdk/aws-cloudformation';
 import * as iam from '@aws-cdk/aws-iam';
+import * as lambdaNodejs from '@aws-cdk/aws-lambda-nodejs';
 import * as lambda from '@aws-cdk/aws-lambda';
 import * as cdk from '@aws-cdk/core';
 import * as customResource from '@aws-cdk/custom-resources';
@@ -18,10 +19,14 @@ export class SesSmtpCredentialsProvider extends cdk.Construct {
     constructor(scope: cdk.Construct, id: string) {
         super(scope, id);
         this.provider = new customResource.Provider(this, 'ses-smtp-credentials-provider', {
-            onEventHandler: new lambda.Function(this, 'ses-smtp-credentials-event', {
-                code: lambda.Code.fromAsset(path.join(__dirname, 'provider')),
+            onEventHandler: new lambdaNodejs.NodejsFunction(this, 'ses-smtp-credentials-event', {
+                entry: path.join(__dirname, 'provider', 'index.ts'),
+                projectRoot: path.join(__dirname, 'provider'),
                 runtime: lambda.Runtime.NODEJS_12_X,
-                handler: 'index.onEvent',
+                nodeModules: [
+                    'utf8',
+                ],
+                handler: 'onEvent',
                 timeout: cdk.Duration.minutes(5),
                 initialPolicy: [
                     new iam.PolicyStatement({
