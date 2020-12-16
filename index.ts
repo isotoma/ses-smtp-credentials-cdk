@@ -41,7 +41,7 @@ export class SesSmtpCredentialsProvider extends cdk.Construct {
                         ],
                     }),
                 ],
-            }),
+            } as lambdaNodejs.NodejsFunctionProps),
         });
     }
 }
