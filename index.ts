@@ -23,9 +23,16 @@ export class SesSmtpCredentialsProvider extends cdk.Construct {
                 entry: path.join(__dirname, 'provider', 'index.ts'),
                 projectRoot: path.join(__dirname, 'provider'),
                 runtime: lambda.Runtime.NODEJS_12_X,
+                // To handle parcel-based versions of NodejsFunction
                 nodeModules: [
                     'utf8',
                 ],
+                // To handle esbuild-based versions of NodejsFunction
+                bundling: {
+                    externalModules: [
+                        'utf8',
+                    ],
+                },
                 handler: 'onEvent',
                 timeout: cdk.Duration.minutes(5),
                 initialPolicy: [
