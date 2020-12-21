@@ -1,6 +1,6 @@
 {
   "name": "ses-smtp-credentials-cdk",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Create SMTP Credentials for use with SES",
   "main": "lib/index.js",
   "scripts": {

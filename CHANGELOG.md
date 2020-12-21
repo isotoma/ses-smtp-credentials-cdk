@@ -2,7 +2,13 @@
 
 All notable changes to this project will be documented in this file. Dates are displayed in UTC.
 
+#### [1.0.8](https://github.com/isotoma/ses-smtp-credentials-cdk/compare/1.0.7...1.0.8)
+
+- Fix typo in npm publish command [`1c27812`](https://github.com/isotoma/ses-smtp-credentials-cdk/commit/1c278128413748e55b11e9f76677215ffc87c3a6)
+
 #### [1.0.7](https://github.com/isotoma/ses-smtp-credentials-cdk/compare/1.0.6...1.0.7)
+
+> 21 December 2020
 
 - Run build before trying to publish to npm [`9f5e0db`](https://github.com/isotoma/ses-smtp-credentials-cdk/commit/9f5e0dbda68d274efd917b974d23af52704b7e92)
 
