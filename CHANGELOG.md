@@ -2,7 +2,13 @@
 
 All notable changes to this project will be documented in this file. Dates are displayed in UTC.
 
+#### [1.0.10](https://github.com/isotoma/ses-smtp-credentials-cdk/compare/1.0.9...1.0.10)
+
+- Release CI debugging 2 [`de9a4d0`](https://github.com/isotoma/ses-smtp-credentials-cdk/commit/de9a4d0fd218c87ea24bb9c60bc8212cc3403a2a)
+
 #### [1.0.9](https://github.com/isotoma/ses-smtp-credentials-cdk/compare/1.0.8...1.0.9)
+
+> 21 December 2020
 
 - Release CI debugging [`be78560`](https://github.com/isotoma/ses-smtp-credentials-cdk/commit/be7856067e82c745d34445b13df8001519b07ae6)
 
