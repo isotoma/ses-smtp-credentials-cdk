@@ -6,7 +6,7 @@
   "scripts": {
     "compile": "tsc",
     "clean": "rm -rf ./lib",
-    "build": "npm run clean && npm run compile && cp -r provider ./lib/provider && rm -rf ./lib/provider/lib ./lib/provider/node_modules && cp package.json ./lib",
+    "build": "npm run clean && npm run compile && cp -r provider ./lib/provider && rm -rf ./lib/provider/lib ./lib/provider/node_modules && cp package.json README.md ./lib",
     "version": "auto-changelog --hide-credit -p && git add CHANGELOG.md",
     "test": "jest"
   },
