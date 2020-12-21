@@ -17,6 +17,8 @@ jobs:
     - run: npm ci
     - run: npm run build
     - run: npm whoami
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     - run: cat ~/.npmrc
     - run: cat ./.npmrc
     - run: cd lib && npm --userconfig="../.npmrc" publish
