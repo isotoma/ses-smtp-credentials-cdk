@@ -2,7 +2,13 @@
 
 All notable changes to this project will be documented in this file. Dates are displayed in UTC.
 
+#### [1.0.12](https://github.com/isotoma/ses-smtp-credentials-cdk/compare/1.0.11...1.0.12)
+
+- Do not explicitly set --userconfig when publishing [`194f420`](https://github.com/isotoma/ses-smtp-credentials-cdk/commit/194f420d1552e79b719e1baaad0a9097d64ada16)
+
 #### [1.0.11](https://github.com/isotoma/ses-smtp-credentials-cdk/compare/1.0.10...1.0.11)
+
+> 21 December 2020
 
 - Remove release CI debugging [`f71589a`](https://github.com/isotoma/ses-smtp-credentials-cdk/commit/f71589adf2b49efcc88c67f09740adbab16b3caf)
 
