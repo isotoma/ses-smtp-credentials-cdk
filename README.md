@@ -1,5 +1,7 @@
 # ses-smtp-credentials-cdk
 
+[![npm version](https://badge.fury.io/js/ses-smtp-credentials-cdk.svg)](https://badge.fury.io/js/ses-smtp-credentials-cdk)
+
 Generate AWS SES SMTP credentials for sending mail via SES.
 
 ## What
