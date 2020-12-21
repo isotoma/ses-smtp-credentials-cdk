@@ -40,4 +40,12 @@ https://docs.aws.amazon.com/ses/latest/DeveloperGuide/smtp-credentials.html
 
 The returned username and password are provided via Cloudformation (rather like the Iam::AccessKey resource), which is potentially a problem for confidentiality. Better would be for this custom resource to write directly to a secret. Patches are welcome.
 
+## Development
 
+### Releasing a new version
+
+Run
+```
+$ npm version (patch|minor|major)
+$ git push origin master [tag you just created]
+```

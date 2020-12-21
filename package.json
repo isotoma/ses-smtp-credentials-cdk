@@ -1,12 +1,13 @@
 {
   "name": "ses-smtp-credentials-cdk",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Create SMTP Credentials for use with SES",
   "main": "lib/index.js",
   "scripts": {
     "compile": "tsc",
     "clean": "rm -rf ./lib",
     "build": "npm run clean && npm run compile && cp -r provider ./lib/provider && rm -rf ./lib/provider/lib ./lib/provider/node_modules && cp package.json ./lib",
+    "version": "auto-changelog --hide-credit -p && git add CHANGELOG.md",
     "test": "jest"
   },
   "repository": {
@@ -25,6 +26,7 @@
     "@aws-cdk/core": "^1.31.0",
     "@aws-cdk/custom-resources": "^1.31.0",
     "@types/node": "^13.11.0",
+    "auto-changelog": "^2.2.1",
     "jest": "^25.2.7",
     "typescript": "^3.8.3"
   }
