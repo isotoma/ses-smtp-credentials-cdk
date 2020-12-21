@@ -2,7 +2,14 @@
 
 All notable changes to this project will be documented in this file. Dates are displayed in UTC.
 
+#### [1.0.13](https://github.com/isotoma/ses-smtp-credentials-cdk/compare/1.0.12...1.0.13)
+
+- Another fix for changes to NodejsFunction [`#6`](https://github.com/isotoma/ses-smtp-credentials-cdk/pull/6)
+- Add npm badge to README [`1b8490d`](https://github.com/isotoma/ses-smtp-credentials-cdk/commit/1b8490d4bf5e56c63d5d31fffef69d261a169f42)
+
 #### [1.0.12](https://github.com/isotoma/ses-smtp-credentials-cdk/compare/1.0.11...1.0.12)
+
+> 21 December 2020
 
 - Do not explicitly set --userconfig when publishing [`194f420`](https://github.com/isotoma/ses-smtp-credentials-cdk/commit/194f420d1552e79b719e1baaad0a9097d64ada16)
 
