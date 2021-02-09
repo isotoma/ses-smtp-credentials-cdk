@@ -2,7 +2,7 @@
   "name": "ses-smtpcredentials-cdk-provider",
   "version": "1.0.0",
   "description": "",
-  "main": "lib/index.js",
+  "main": "lib/main.js",
   "directories": {
     "lib": "lib"
   },

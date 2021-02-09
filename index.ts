@@ -20,7 +20,7 @@ export class SesSmtpCredentialsProvider extends cdk.Construct {
         super(scope, id);
         this.provider = new customResource.Provider(this, 'ses-smtp-credentials-provider', {
             onEventHandler: new lambdaNodejs.NodejsFunction(this, 'ses-smtp-credentials-event', {
-                entry: path.join(__dirname, 'provider', 'index.ts'),
+                entry: path.join(__dirname, 'provider', 'main.ts'),
                 projectRoot: path.join(__dirname, 'provider'),
                 runtime: lambda.Runtime.NODEJS_12_X,
                 // To handle parcel-based versions of NodejsFunction
