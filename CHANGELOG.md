@@ -2,7 +2,15 @@
 
 All notable changes to this project will be documented in this file. Dates are displayed in UTC.
 
+#### [1.0.14](https://github.com/isotoma/ses-smtp-credentials-cdk/compare/1.0.13...1.0.14)
+
+- Do not name the provider entrypoint index.ts [`#9`](https://github.com/isotoma/ses-smtp-credentials-cdk/pull/9)
+- Set peerDependencies in package.json [`#8`](https://github.com/isotoma/ses-smtp-credentials-cdk/pull/8)
+- Fix example in docs [`#7`](https://github.com/isotoma/ses-smtp-credentials-cdk/pull/7)
+
 #### [1.0.13](https://github.com/isotoma/ses-smtp-credentials-cdk/compare/1.0.12...1.0.13)
+
+> 21 December 2020
 
 - Another fix for changes to NodejsFunction [`#6`](https://github.com/isotoma/ses-smtp-credentials-cdk/pull/6)
 - Add npm badge to README [`1b8490d`](https://github.com/isotoma/ses-smtp-credentials-cdk/commit/1b8490d4bf5e56c63d5d31fffef69d261a169f42)
