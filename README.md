@@ -13,17 +13,23 @@ This addresses that.
 
 ## Usage
 
-    const credentials = new SesSmtpCredentials(stack, 'Credentials', {
-        region: 'eu-west-1'
-    });
+```typescript
+import { SesSmtpCredentials } from 'ses-smtp-credentials-cdk';
 
-    new ssm.StringParameter(stack, 'CredentialsParameter', {
-        parameterName: 'email',
-        stringValue: JSON.stringify({
-            username: smtp.username(),
-            password: smtp.password(),
-        })
-    });
+// ...
+
+const smtpCredentials = new SesSmtpCredentials(this, 'Credentials', {
+    region: 'eu-west-1'
+});
+
+new ssm.StringParameter(this, 'CredentialsParameter', {
+    parameterName: 'email',
+    stringValue: JSON.stringify({
+        username: smtpCredentials.username(),
+        password: smtpCredentials.password(),
+    })
+});
+```
 
 ## Implementation
 
