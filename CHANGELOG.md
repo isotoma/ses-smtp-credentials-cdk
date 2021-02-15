@@ -2,7 +2,13 @@
 
 All notable changes to this project will be documented in this file. Dates are displayed in UTC.
 
+#### [1.0.15](https://github.com/isotoma/ses-smtp-credentials-cdk/compare/1.0.14...1.0.15)
+
+- Upgrade dev dependencies [`#10`](https://github.com/isotoma/ses-smtp-credentials-cdk/pull/10)
+
 #### [1.0.14](https://github.com/isotoma/ses-smtp-credentials-cdk/compare/1.0.13...1.0.14)
+
+> 9 February 2021
 
 - Do not name the provider entrypoint index.ts [`#9`](https://github.com/isotoma/ses-smtp-credentials-cdk/pull/9)
 - Set peerDependencies in package.json [`#8`](https://github.com/isotoma/ses-smtp-credentials-cdk/pull/8)
