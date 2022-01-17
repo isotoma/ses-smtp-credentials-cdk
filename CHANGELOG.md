@@ -2,7 +2,13 @@
 
 All notable changes to this project will be documented in this file. Dates are displayed in UTC.
 
+#### [1.0.16](https://github.com/isotoma/ses-smtp-credentials-cdk/compare/1.0.15...1.0.16)
+
+- Fix for depsLockFilePath [`#19`](https://github.com/isotoma/ses-smtp-credentials-cdk/pull/19)
+
 #### [1.0.15](https://github.com/isotoma/ses-smtp-credentials-cdk/compare/1.0.14...1.0.15)
+
+> 15 February 2021
 
 - Upgrade dev dependencies [`#10`](https://github.com/isotoma/ses-smtp-credentials-cdk/pull/10)
 
