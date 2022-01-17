@@ -27,11 +27,13 @@ export class SesSmtpCredentialsProvider extends cdk.Construct {
                 // To handle parcel-based versions of NodejsFunction
                 nodeModules: [
                     'utf8',
+                    'aws-sdk',
                 ],
                 // To handle esbuild-based versions of NodejsFunction
                 bundling: {
                     externalModules: [
                         'utf8',
+                        'aws-sdk',
                     ],
                 },
                 handler: 'onEvent',
