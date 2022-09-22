@@ -1,4 +1,3 @@
-import * as cfn from 'aws-cdk-lib/aws-cloudformation';
 import * as iam from 'aws-cdk-lib/aws-iam';
 import * as lambdaNodejs from 'aws-cdk-lib/aws-lambda-nodejs';
 import * as lambda from 'aws-cdk-lib/aws-lambda';
@@ -19,7 +18,7 @@ export class SesSmtpCredentialsProvider extends Construct {
         const x = (stack.node.tryFindChild(id) as SesSmtpCredentialsProvider) || new SesSmtpCredentialsProvider(stack, id);
         return x.provider;
     }
-    
+
     constructor(scope: Construct, id: string) {
         super(scope, id);
         this.provider = new customResource.Provider(this, 'ses-smtp-credentials-provider', {
@@ -29,30 +28,17 @@ export class SesSmtpCredentialsProvider extends Construct {
                 depsLockFilePath: path.join(__dirname, 'provider', 'package-lock.json'),
                 runtime: lambda.Runtime.NODEJS_12_X,
                 // To handle parcel-based versions of NodejsFunction
-                nodeModules: [
-                    'utf8',
-                    'aws-sdk',
-                ],
+                nodeModules: ['utf8', 'aws-sdk'],
                 // To handle esbuild-based versions of NodejsFunction
                 bundling: {
-                    externalModules: [
-                        'utf8',
-                        'aws-sdk',
-                    ],
+                    externalModules: ['utf8', 'aws-sdk'],
                 },
                 handler: 'onEvent',
                 timeout: cdk.Duration.minutes(5),
                 initialPolicy: [
                     new iam.PolicyStatement({
                         resources: ['*'],
-                        actions: [
-                            'iam:CreateUser',
-                            'iam:PutUserPolicy',
-                            'iam:CreateAccessKey',
-                            'iam:DeleteUser',
-                            'iam:DeleteUserPolicy',
-                            'iam:DeleteAccessKey'
-                        ],
+                        actions: ['iam:CreateUser', 'iam:PutUserPolicy', 'iam:CreateAccessKey', 'iam:DeleteUser', 'iam:DeleteUserPolicy', 'iam:DeleteAccessKey'],
                     }),
                 ],
             } as lambdaNodejs.NodejsFunctionProps),
@@ -75,16 +61,16 @@ export class SesSmtpCredentials extends Construct {
             serviceToken: provider.serviceToken,
             resourceType: 'Custom::SesSmtpCredentials',
             properties: {
-                Region: this.region
-            }
+                Region: this.region,
+            },
         });
     }
 
     public username(): string {
-        return this.resource.getAttString('Username')
+        return this.resource.getAttString('Username');
     }
-    
+
     public password(): string {
-        return this.resource.getAttString('Password')
+        return this.resource.getAttString('Password');
     }
 }
