@@ -21,12 +21,12 @@
   },
   "homepage": "https://github.com/isotoma/ses-smtp-credentials-cdk#readme",
   "peerDependencies": {
-    "@aws-cdk/aws-cloudformation": "^1.31.0",
-    "@aws-cdk/aws-iam": "^1.31.0",
-    "@aws-cdk/aws-lambda": "^1.31.0",
-    "@aws-cdk/aws-lambda-nodejs": "^1.31.0",
-    "@aws-cdk/core": "^1.31.0",
-    "@aws-cdk/custom-resources": "^1.31.0",
+    "@aws-cdk/aws-cloudformation": "^1.89.0",
+    "@aws-cdk/aws-iam": "^1.89.0",
+    "@aws-cdk/aws-lambda": "^1.89.0",
+    "@aws-cdk/aws-lambda-nodejs": "^1.89.0",
+    "@aws-cdk/core": "^1.89.0",
+    "@aws-cdk/custom-resources": "^1.89.0",
     "aws-cdk-lib": "^2.0.0",
     "constructs": "^10.0.0"
   },
@@ -57,10 +57,10 @@
     }
   },
   "devDependencies": {
-    "@aws-cdk/aws-lambda": "^1.31.0",
-    "@aws-cdk/aws-lambda-nodejs": "^1.31.0",
-    "@aws-cdk/core": "^1.31.0",
-    "@aws-cdk/custom-resources": "^1.31.0",
+    "@aws-cdk/aws-lambda": "^1.89.0",
+    "@aws-cdk/aws-lambda-nodejs": "^1.89.0",
+    "@aws-cdk/core": "^1.89.0",
+    "@aws-cdk/custom-resources": "^1.89.0",
     "@types/node": "^14.14.28",
     "auto-changelog": "^2.2.1",
     "aws-cdk-lib": "^2.0.0",

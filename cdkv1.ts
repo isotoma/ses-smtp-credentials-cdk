@@ -26,7 +26,7 @@ export class SesSmtpCredentialsProvider extends cdk.Construct {
                 entry: path.join(__dirname, 'provider', 'main.ts'),
                 projectRoot: path.join(__dirname, 'provider'),
                 depsLockFilePath: path.join(__dirname, 'provider', 'package-lock.json'),
-                runtime: lambda.Runtime.NODEJS_12_X,
+                runtime: lambda.Runtime.NODEJS_14_X,
                 // To handle parcel-based versions of NodejsFunction
                 nodeModules: [
                     'utf8',
