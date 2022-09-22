@@ -7,6 +7,8 @@
     "compile": "tsc",
     "clean": "rm -rf ./lib",
     "build": "npm run clean && npm run compile && cp -r provider ./lib/provider && rm -rf ./lib/provider/lib ./lib/provider/node_modules && cp package.json README.md ./lib",
+    "lint": "eslint '*.ts' --fix",
+    "lint-check": "eslint '*.ts' --max-warnings 0",
     "version": "auto-changelog --hide-credit -p && git add CHANGELOG.md",
     "test": "jest"
   },
@@ -62,10 +64,16 @@
     "@aws-cdk/core": "^1.31.0",
     "@aws-cdk/custom-resources": "^1.31.0",
     "@types/node": "^14.14.28",
+    "@typescript-eslint/eslint-plugin": "4.8.2",
+    "@typescript-eslint/parser": "4.8.2",
     "auto-changelog": "^2.2.1",
     "aws-cdk-lib": "^2.0.0",
     "constructs": "^10.0.0",
+    "eslint": "6.8.0",
+    "eslint-config-prettier": "6.9.0",
+    "eslint-plugin-prettier": "3.1.2",
     "jest": "^26.6.3",
+    "prettier": "1.19.1",
     "typescript": "^4.1.5"
   }
 }
