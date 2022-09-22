@@ -2,7 +2,14 @@
 
 All notable changes to this project will be documented in this file. Dates are displayed in UTC.
 
+#### [1.2.0](https://github.com/isotoma/ses-smtp-credentials-cdk/compare/1.1.0...1.2.0)
+
+- Use node 14 [`#30`](https://github.com/isotoma/ses-smtp-credentials-cdk/pull/30)
+- Linting [`#29`](https://github.com/isotoma/ses-smtp-credentials-cdk/pull/29)
+
 #### [1.1.0](https://github.com/isotoma/ses-smtp-credentials-cdk/compare/1.0.17...1.1.0)
+
+> 22 September 2022
 
 - CDKv2 support [`#26`](https://github.com/isotoma/ses-smtp-credentials-cdk/pull/26)
 
