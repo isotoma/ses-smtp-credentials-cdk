@@ -26,7 +26,35 @@
     "@aws-cdk/aws-lambda": "^1.31.0",
     "@aws-cdk/aws-lambda-nodejs": "^1.31.0",
     "@aws-cdk/core": "^1.31.0",
-    "@aws-cdk/custom-resources": "^1.31.0"
+    "@aws-cdk/custom-resources": "^1.31.0",
+    "aws-cdk-lib": "^2.0.0",
+    "constructs": "^10.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@aws-cdk/aws-cloudformation": {
+      "optional": true
+    },
+    "@aws-cdk/aws-iam": {
+      "optional": true
+    },
+    "@aws-cdk/aws-lambda": {
+      "optional": true
+    },
+    "@aws-cdk/aws-lambda-nodejs": {
+      "optional": true
+    },
+    "@aws-cdk/aws-core": {
+      "optional": true
+    },
+    "@aws-cdk/aws-custom-resources": {
+      "optional": true
+    },
+    "aws-cdk-lib": {
+      "optional": true
+    },
+    "constructs": {
+      "optional": true
+    }
   },
   "devDependencies": {
     "@aws-cdk/aws-lambda": "^1.31.0",
@@ -35,6 +63,8 @@
     "@aws-cdk/custom-resources": "^1.31.0",
     "@types/node": "^14.14.28",
     "auto-changelog": "^2.2.1",
+    "aws-cdk-lib": "^2.0.0",
+    "constructs": "^10.0.0",
     "jest": "^26.6.3",
     "typescript": "^4.1.5"
   }
