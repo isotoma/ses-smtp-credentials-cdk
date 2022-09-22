@@ -2,7 +2,13 @@
 
 All notable changes to this project will be documented in this file. Dates are displayed in UTC.
 
+#### [1.1.0](https://github.com/isotoma/ses-smtp-credentials-cdk/compare/1.0.17...1.1.0)
+
+- CDKv2 support [`#26`](https://github.com/isotoma/ses-smtp-credentials-cdk/pull/26)
+
 #### [1.0.17](https://github.com/isotoma/ses-smtp-credentials-cdk/compare/1.0.16...1.0.17)
+
+> 17 January 2022
 
 - Explicitly include aws-sdk in external modules [`#22`](https://github.com/isotoma/ses-smtp-credentials-cdk/pull/22)
 
