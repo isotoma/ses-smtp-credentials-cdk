@@ -45,10 +45,10 @@
     "@aws-cdk/aws-lambda-nodejs": {
       "optional": true
     },
-    "@aws-cdk/aws-core": {
+    "@aws-cdk/core": {
       "optional": true
     },
-    "@aws-cdk/aws-custom-resources": {
+    "@aws-cdk/custom-resources": {
       "optional": true
     },
     "aws-cdk-lib": {
