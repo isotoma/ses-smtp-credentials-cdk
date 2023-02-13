@@ -2,7 +2,13 @@
 
 All notable changes to this project will be documented in this file. Dates are displayed in UTC.
 
+#### [1.2.3](https://github.com/isotoma/ses-smtp-credentials-cdk/compare/1.2.2...1.2.3)
+
+- Add utf8 as dev dependency [`#37`](https://github.com/isotoma/ses-smtp-credentials-cdk/pull/37)
+
 #### [1.2.2](https://github.com/isotoma/ses-smtp-credentials-cdk/compare/1.2.1...1.2.2)
+
+> 13 February 2023
 
 - Use node 16 for dev [`#36`](https://github.com/isotoma/ses-smtp-credentials-cdk/pull/36)
 - Use esbuild for the provider [`#35`](https://github.com/isotoma/ses-smtp-credentials-cdk/pull/35)
