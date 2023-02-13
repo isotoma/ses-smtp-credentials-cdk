@@ -1,5 +1,4 @@
 import * as iam from 'aws-cdk-lib/aws-iam';
-import * as lambdaNodejs from 'aws-cdk-lib/aws-lambda-nodejs';
 import * as lambda from 'aws-cdk-lib/aws-lambda';
 import * as cdk from 'aws-cdk-lib';
 import * as customResource from 'aws-cdk-lib/custom-resources';
@@ -22,18 +21,10 @@ export class SesSmtpCredentialsProvider extends Construct {
     constructor(scope: Construct, id: string) {
         super(scope, id);
         this.provider = new customResource.Provider(this, 'ses-smtp-credentials-provider', {
-            onEventHandler: new lambdaNodejs.NodejsFunction(this, 'ses-smtp-credentials-event', {
-                entry: path.join(__dirname, 'provider', 'main.ts'),
-                projectRoot: path.join(__dirname, 'provider'),
-                depsLockFilePath: path.join(__dirname, 'provider', 'package-lock.json'),
+            onEventHandler: new lambda.Function(this, 'ses-smtp-credentials-event', {
+                code: lambda.Code.fromAsset(path.join(__dirname, 'provider')),
                 runtime: lambda.Runtime.NODEJS_14_X,
-                // To handle parcel-based versions of NodejsFunction
-                nodeModules: ['utf8', 'aws-sdk'],
-                // To handle esbuild-based versions of NodejsFunction
-                bundling: {
-                    externalModules: ['utf8', 'aws-sdk'],
-                },
-                handler: 'onEvent',
+                handler: 'main.onEvent',
                 timeout: cdk.Duration.minutes(5),
                 initialPolicy: [
                     new iam.PolicyStatement({
@@ -41,7 +32,7 @@ export class SesSmtpCredentialsProvider extends Construct {
                         actions: ['iam:CreateUser', 'iam:PutUserPolicy', 'iam:CreateAccessKey', 'iam:DeleteUser', 'iam:DeleteUserPolicy', 'iam:DeleteAccessKey'],
                     }),
                 ],
-            } as lambdaNodejs.NodejsFunctionProps),
+            }),
         });
     }
 }

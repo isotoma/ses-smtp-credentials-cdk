@@ -6,7 +6,9 @@
   "scripts": {
     "compile": "tsc",
     "clean": "rm -rf ./lib",
-    "build": "npm run clean && npm run compile && cp -r provider ./lib/provider && rm -rf ./lib/provider/lib ./lib/provider/node_modules && cp package.json README.md ./lib",
+    "build": "npm run clean && npm run compile && npm run compile-provider && cp -R ./provider/build/ ./lib/provider/ && cp package.json README.md ./lib",
+    "clean-provider": "rm -rf provider/build/",
+    "compile-provider": "npm run clean-provider && npx esbuild --platform=node --target=node16 --minify-syntax --external:aws-sdk --bundle --outdir=./provider/build ./provider/main.ts",
     "lint": "eslint '*.ts' --fix",
     "lint-check": "eslint '*.ts' --max-warnings 0",
     "version": "auto-changelog --hide-credit -p && git add CHANGELOG.md",
@@ -26,7 +28,6 @@
     "@aws-cdk/aws-cloudformation": "^1.89.0",
     "@aws-cdk/aws-iam": "^1.89.0",
     "@aws-cdk/aws-lambda": "^1.89.0",
-    "@aws-cdk/aws-lambda-nodejs": "^1.89.0",
     "@aws-cdk/core": "^1.89.0",
     "@aws-cdk/custom-resources": "^1.89.0",
     "aws-cdk-lib": "^2.0.0",
@@ -40,9 +41,6 @@
       "optional": true
     },
     "@aws-cdk/aws-lambda": {
-      "optional": true
-    },
-    "@aws-cdk/aws-lambda-nodejs": {
       "optional": true
     },
     "@aws-cdk/core": {
@@ -60,7 +58,6 @@
   },
   "devDependencies": {
     "@aws-cdk/aws-lambda": "^1.89.0",
-    "@aws-cdk/aws-lambda-nodejs": "^1.89.0",
     "@aws-cdk/core": "^1.89.0",
     "@aws-cdk/custom-resources": "^1.89.0",
     "@types/node": "^14.14.28",
@@ -69,6 +66,7 @@
     "auto-changelog": "^2.2.1",
     "aws-cdk-lib": "^2.0.0",
     "constructs": "^10.0.0",
+    "esbuild": "^0.17.8",
     "eslint": "6.8.0",
     "eslint-config-prettier": "6.9.0",
     "eslint-plugin-prettier": "3.1.2",

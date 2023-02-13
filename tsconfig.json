@@ -26,5 +26,8 @@
     "cdkv1.ts",
     "cdkv2.ts",
     "common.ts"
+  ],
+  "exclude": [
+      "provider/**"
   ]
 }
