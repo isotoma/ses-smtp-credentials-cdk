@@ -2,7 +2,14 @@
 
 All notable changes to this project will be documented in this file. Dates are displayed in UTC.
 
+#### [1.2.2](https://github.com/isotoma/ses-smtp-credentials-cdk/compare/1.2.1...1.2.2)
+
+- Use node 16 for dev [`#36`](https://github.com/isotoma/ses-smtp-credentials-cdk/pull/36)
+- Use esbuild for the provider [`#35`](https://github.com/isotoma/ses-smtp-credentials-cdk/pull/35)
+
 #### [1.2.1](https://github.com/isotoma/ses-smtp-credentials-cdk/compare/1.2.0...1.2.1)
+
+> 30 September 2022
 
 - Fix peer dependencies to be optional [`33cb927`](https://github.com/isotoma/ses-smtp-credentials-cdk/commit/33cb927782867fa1080d3f839d2b8c9904cbf3fe)
 
