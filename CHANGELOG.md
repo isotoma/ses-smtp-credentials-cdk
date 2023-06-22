@@ -2,7 +2,13 @@
 
 All notable changes to this project will be documented in this file. Dates are displayed in UTC.
 
-#### [2.0.0](https://github.com/isotoma/ses-smtp-credentials-cdk/compare/1.2.3...2.0.0)
+#### [2.0.1](https://github.com/isotoma/ses-smtp-credentials-cdk/compare/2.0.0...2.0.1)
+
+- Remove deprecated "main" from package.json [`#40`](https://github.com/isotoma/ses-smtp-credentials-cdk/pull/40)
+
+### [2.0.0](https://github.com/isotoma/ses-smtp-credentials-cdk/compare/1.2.3...2.0.0)
+
+> 1 June 2023
 
 - Change index exports to cdkv2 [`#38`](https://github.com/isotoma/ses-smtp-credentials-cdk/pull/38)
 - Bump handlebars from 4.7.6 to 4.7.7 [`#11`](https://github.com/isotoma/ses-smtp-credentials-cdk/pull/11)
