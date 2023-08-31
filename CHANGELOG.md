@@ -2,7 +2,14 @@
 
 All notable changes to this project will be documented in this file. Dates are displayed in UTC.
 
+#### [3.0.0](https://github.com/isotoma/ses-smtp-credentials-cdk/compare/2.0.1...3.0.0)
+
+- Remove CDK v1 support [`#44`](https://github.com/isotoma/ses-smtp-credentials-cdk/pull/44)
+- Remove vestigial tsconfig.json from provider/ [`#43`](https://github.com/isotoma/ses-smtp-credentials-cdk/pull/43)
+
 #### [2.0.1](https://github.com/isotoma/ses-smtp-credentials-cdk/compare/2.0.0...2.0.1)
+
+> 22 June 2023
 
 - Remove deprecated "main" from package.json [`#40`](https://github.com/isotoma/ses-smtp-credentials-cdk/pull/40)
 
