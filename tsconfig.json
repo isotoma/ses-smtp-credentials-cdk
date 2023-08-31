@@ -23,7 +23,6 @@
   },
   "include": [
     "index.ts",
-    "cdkv1.ts",
     "cdkv2.ts",
     "common.ts"
   ],
