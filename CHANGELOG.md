@@ -2,7 +2,13 @@
 
 All notable changes to this project will be documented in this file. Dates are displayed in UTC.
 
+#### [3.2.0](https://github.com/isotoma/ses-smtp-credentials-cdk/compare/3.1.0...3.2.0)
+
+- Use Node 18 [`#46`](https://github.com/isotoma/ses-smtp-credentials-cdk/pull/46)
+
 #### [3.1.0](https://github.com/isotoma/ses-smtp-credentials-cdk/compare/3.0.0...3.1.0)
+
+> 31 August 2023
 
 - Use Node 16 for the Lambda runtime [`#45`](https://github.com/isotoma/ses-smtp-credentials-cdk/pull/45)
 
