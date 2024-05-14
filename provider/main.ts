@@ -5,7 +5,7 @@ import {
     CloudFormationCustomResourceResponse,
     CloudFormationCustomResourceUpdateEvent,
 } from 'aws-lambda';
-import * as AWS from 'aws-sdk';
+import { IAM } from '@aws-sdk/client-iam';
 import * as crypto from 'crypto';
 import * as utf8 from 'utf8';
 
@@ -41,7 +41,7 @@ export const getSmtpPassword = (key: string, region: string) => {
 
 export const onCreate = async (event: CloudFormationCustomResourceCreateEvent): Promise<CloudFormationCustomResourceResponse> => {
     const region = event.ResourceProperties.Region;
-    const iam = new AWS.IAM();
+    const iam = new IAM();
 
     const now = new Date();
     const userName = `ses-user-${now.toISOString().replace('T', '.').replace('Z', '').replace(/:/g, '-')}`;
@@ -49,8 +49,7 @@ export const onCreate = async (event: CloudFormationCustomResourceCreateEvent): 
     const user = await iam
         .createUser({
             UserName: userName,
-        })
-        .promise();
+        });
     if (!user.User) {
         throw new Error('No user created');
     }
@@ -66,13 +65,11 @@ export const onCreate = async (event: CloudFormationCustomResourceCreateEvent): 
                     Resource: '*',
                 },
             }),
-        })
-        .promise();
+        });
     const accessKey = await iam
         .createAccessKey({
             UserName: user.User.UserName,
-        })
-        .promise();
+        });
     const username = accessKey.AccessKey.AccessKeyId;
     const secretKey = accessKey.AccessKey.SecretAccessKey;
     const password = getSmtpPassword(secretKey, region);
@@ -100,25 +97,22 @@ export const onUpdate = async (event: CloudFormationCustomResourceUpdateEvent): 
 };
 
 export const onDelete = async (event: CloudFormationCustomResourceDeleteEvent): Promise<CloudFormationCustomResourceResponse> => {
-    const iam = new AWS.IAM();
+    const iam = new IAM();
     const [username, accessKeyId] = event.PhysicalResourceId.split(/\//);
     await iam
         .deleteAccessKey({
             UserName: username,
             AccessKeyId: accessKeyId,
-        })
-        .promise();
+        });
     await iam
         .deleteUserPolicy({
             UserName: username,
             PolicyName: policyName,
-        })
-        .promise();
+        });
     await iam
         .deleteUser({
             UserName: username,
-        })
-        .promise();
+        });
     return {
         Status: 'SUCCESS',
         RequestId: event.RequestId,
