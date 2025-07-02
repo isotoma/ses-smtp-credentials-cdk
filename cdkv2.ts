@@ -23,7 +23,7 @@ export class SesSmtpCredentialsProvider extends Construct {
         this.provider = new customResource.Provider(this, 'ses-smtp-credentials-provider', {
             onEventHandler: new lambda.Function(this, 'ses-smtp-credentials-event', {
                 code: lambda.Code.fromAsset(path.join(__dirname, 'provider')),
-                runtime: lambda.Runtime.NODEJS_18_X,
+                runtime: new lambda.Runtime('nodejs22.x', lambda.RuntimeFamily.NODEJS, { supportsInlineCode: true }),
                 handler: 'main.onEvent',
                 timeout: cdk.Duration.minutes(5),
                 initialPolicy: [
