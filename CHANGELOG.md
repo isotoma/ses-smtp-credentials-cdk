@@ -2,7 +2,13 @@
 
 All notable changes to this project will be documented in this file. Dates are displayed in UTC.
 
+#### [3.4.0](https://github.com/isotoma/ses-smtp-credentials-cdk/compare/3.3.0...3.4.0)
+
+- Upgrade Lambda runtime from 18 to 22 [`#50`](https://github.com/isotoma/ses-smtp-credentials-cdk/pull/50)
+
 #### [3.3.0](https://github.com/isotoma/ses-smtp-credentials-cdk/compare/3.2.0...3.3.0)
+
+> 6 January 2025
 
 - Remove vulnerable CDK v1 dependencies [`#49`](https://github.com/isotoma/ses-smtp-credentials-cdk/pull/49)
 
