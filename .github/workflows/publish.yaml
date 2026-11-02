@@ -7,15 +7,51 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      # Publishing uses npm trusted publishing over OIDC rather than a stored
+      # NPM_TOKEN, so there is no long-lived credential to leak or silently
+      # expire. This permission lets the job mint the short-lived OIDC token.
+      id-token: write
     steps:
-    - uses: actions/checkout@v2
-    # Setup .npmrc file to publish to npm
-    - uses: actions/setup-node@v1
+    - uses: actions/checkout@v7
+    # registry-url is still needed: it writes the .npmrc pointing at npmjs.org.
+    # No NODE_AUTH_TOKEN, the npm CLI picks up the OIDC token by itself.
+    - uses: actions/setup-node@v7
       with:
-        node-version: '18.x'
+        node-version: '24'
         registry-url: 'https://registry.npmjs.org'
+    # Staged publishing needs npm 11.15.0 or later, and node 24 currently ships
+    # 11.13.0, so the bundled npm is not sufficient. Pinned to the 11.x line
+    # rather than latest, since this job holds publish rights.
+    - run: npm i -g npm@^11.15.0
+    # Belt and braces on the above. Trusted publishing needs 11.5.1 and staging
+    # needs 11.15.0; below either the CLI silently falls back to token auth and
+    # fails with a misleading E404 on the PUT, so assert rather than discover.
+    - name: Check npm is new enough for staged trusted publishing
+      run: |
+        required=11.15.0
+        actual=$(npm --version)
+        echo "npm $actual (need >= $required)"
+        [ "$(printf '%s\n%s\n' "$required" "$actual" | sort -V | head -1)" = "$required" ]
     - run: npm ci
     - run: npm run build
-    - run: cd lib && npm publish
-      env:
-        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+    # Staged, not published. The version lands in the registry but is not
+    # installable until a maintainer approves it with 2FA, so a compromised
+    # workflow cannot put anything in front of consumers on its own.
+    - name: Stage the release
+      run: |
+        cd lib
+        npm stage publish
+        {
+          echo '### Staged, not yet published'
+          echo
+          echo 'This version is in the registry but **not installable** until approved with 2FA.'
+          echo
+          echo 'Approve it in the Staged Packages tab on npmjs.com, or:'
+          echo
+          echo '```'
+          echo 'npm stage list'
+          echo 'npm stage approve <stage-id>'
+          echo '```'
+        } >> "$GITHUB_STEP_SUMMARY"

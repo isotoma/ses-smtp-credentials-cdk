@@ -7,7 +7,7 @@
     "clean": "rm -rf ./lib",
     "build": "npm run clean && npm run compile && npm run compile-provider && cp -R ./provider/build/ ./lib/provider/ && cp package.json README.md ./lib",
     "clean-provider": "rm -rf provider/build/",
-    "compile-provider": "npm run clean-provider && npx esbuild --platform=node --target=node18 --minify-syntax --external:@aws-sdk/client-iam --bundle --outdir=./provider/build ./provider/main.ts",
+    "compile-provider": "npm run clean-provider && npx esbuild --platform=node --target=node22 --minify-syntax --external:@aws-sdk/client-iam --bundle --outdir=./provider/build ./provider/main.ts",
     "lint": "eslint '*.ts' --fix",
     "lint-check": "eslint '*.ts' --max-warnings 0",
     "version": "auto-changelog --hide-credit -p && git add CHANGELOG.md"
